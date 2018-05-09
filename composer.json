@@ -1,7 +1,9 @@
 {
     "name": "spysystem/swagger-codegen",
-    "type": "library",
-    "authors": [
+	"license": "proprietary",
+	"type": "library",
+	"description": "",
+	"authors": [
         {
             "name": "Mads Føhns",
             "email": "mads@spysystem.dk"
