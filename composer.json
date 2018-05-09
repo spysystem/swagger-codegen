@@ -1,0 +1,11 @@
+{
+    "name": "spysystem/swagger-codegen",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mads Føhns",
+            "email": "mads@spysystem.dk"
+        }
+    ],
+    "require": {}
+}
