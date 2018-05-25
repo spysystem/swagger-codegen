@@ -54,6 +54,11 @@ use {{invokerPackage}}\ObjectSerializer;
      */
     protected $headerSelector;
 
+	#region SPY Code
+	protected $bXDebugOnInstance	= false;
+	protected $bXDebugOnNextRequest;
+	#endregion
+
     /**
      * @param ClientInterface $client
      * @param Configuration   $config
@@ -516,6 +521,22 @@ use {{invokerPackage}}\ObjectSerializer;
                 throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
+
+		#region SPY Code
+		$bEnableXDebug	= $this->bXDebugOnNextRequest ?? $this->bXDebugOnInstance;
+
+		$this->bXDebugOnNextRequest	= null;
+
+		if($bEnableXDebug)
+		{
+			$options['cookies'] = CookieJar::fromArray(
+				[
+					'XDEBUG_SESSION'	=> 'PHPSTORM',
+				],
+				SpyApplication::GetSystemDomain()
+			);
+		}
+		#endregion
 
         return $options;
     }
