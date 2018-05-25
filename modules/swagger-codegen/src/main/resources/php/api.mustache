@@ -20,6 +20,7 @@ namespace {{apiPackage}};
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
@@ -529,12 +530,15 @@ use {{invokerPackage}}\ObjectSerializer;
 
 		if($bEnableXDebug)
 		{
-			$options['cookies'] = CookieJar::fromArray(
-				[
-					'XDEBUG_SESSION'	=> 'PHPSTORM',
-				],
-				SpyApplication::GetSystemDomain()
-			);
+			if(preg_match('/^(?:https?:\/\/)?([^\/:]+\.[^\/:]+)/i', $strSystemURL, $arrMatches) === 1)
+			{
+				$options['cookies'] = CookieJar::fromArray(
+					[
+						'XDEBUG_SESSION'	=> 'PHPSTORM',
+					],
+					$arrMatches[1]
+				);
+			}
 		}
 		#endregion
 
