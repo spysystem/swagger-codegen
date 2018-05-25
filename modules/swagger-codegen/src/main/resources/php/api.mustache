@@ -530,7 +530,7 @@ use {{invokerPackage}}\ObjectSerializer;
 
 		if($bEnableXDebug)
 		{
-			if(preg_match('/^(?:https?:\/\/)?([^\/:]+\.[^\/:]+)/i', $strSystemURL, $arrMatches) === 1)
+			if(preg_match('/^(?:https?:\/\/)?([^\/:]+\.[^\/:]+)/i', $this->getConfig()->getHost(), $arrMatches) === 1)
 			{
 				$options['cookies'] = CookieJar::fromArray(
 					[
